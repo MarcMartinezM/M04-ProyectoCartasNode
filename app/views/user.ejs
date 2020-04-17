@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body action="/login" method="post">
+    <h1>Decks y Cartas del usuario: <%= usuario.nameUser %></h1>
+     <h2>Decks</h2>
+    <ul>
+      <% for( var i=0; i < listaMazos.length; i++) { %>
+        <h3>deck <%= i+1 %>:</h3>
+        <li>
+          <%='  ID DECK:  '+ listaMazos[i].deckID + '   DECK NAME:    ' + listaMazos[i].deckName + '   DECK VALUE:   ' + listaMazos[i].deckValue%>
+        </li>
+        <% for( var x=0; x < cartasDelMazos.length; x++) { %>
+
+          <% if (cartasDelMazos[x].length == listaMazos[i].infoCartas.length) { %>
+            <%var cartas = cartasDelMazos[x]%>
+            <h4>Cartas del mazo:</h4>
+            <% cartas.forEach(function(carta) { %>
+              <li><%= carta %></li>
+            <% }); %>
+          <% } %>
+
+        <% } %>
+      <% } %>
+    </ul>
+	
+	 <h2>Cartas:</h2>
+    <ul>
+      <% for( var i=0; i < listaCartas.length; i++) { %>
+        <li>
+          <%='   ID CARTA    '+ listaCartas[i].id + '   TIPO:   ' + listaCartas[i].tipo + '   NOMBRE:   ' + listaCartas[i].nombre_carta + '   COSTE:   ' + listaCartas[i].coste_invocacion + '   ATAKE:   ' + listaCartas[i].ataque + '   VIDA:   ' + listaCartas[i].vida + '   HAB.ESPECIAL:   ' + listaCartas[i].habilidad_especial + '   FACCION:   ' + listaCartas[i].faccion%>
+        </li>
+      <% } %>
+    </ul>
+  </body>
+</html>
