@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 
 var users = [];
 var cartasDB = [];
-var mazosDB = [];
+var decksDB = [];
 
 
 var userLogin;
 var cartas = [];
-var mazos = [];
-var cartasMazos = [];
+var decks = [];
+var cartasdecks = [];
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
@@ -42,14 +42,14 @@ app.post('/login', function(req, res){
 
   if (correcto == true) {
 
-    listCartasYMazos();
+    listCartasYdecks();
 
 
     res.render('user', {
       usuario: userLogin,
       listaCartas: cartas,
-      listaMazos: mazos,
-	  cartasDelMazos : cartasMazos
+      listadecks: decks,
+	  cartasDeldecks : cartasdecks
     });
 
   } else if (correcto == false) {
@@ -57,7 +57,7 @@ app.post('/login', function(req, res){
   }
 });
 
-function listCartasYMazos() {
+function listCartasYdecks() {
   console.log("");
 
   for (var i = 0; i < cartasDB.length; i++) {
@@ -68,15 +68,15 @@ function listCartasYMazos() {
     }
   }
 
-  for (var i = 0; i < mazosDB.length; i++) {
+  for (var i = 0; i < decksDB.length; i++) {
     for (var x = 0; x < userLogin.userDecks.length; x++) {
-      if (mazosDB[i].deckID == userLogin.userDecks[x]) {
-        mazos.push(mazosDB[i]);
+      if (decksDB[i].deckID == userLogin.userDecks[x]) {
+        decks.push(decksDB[i]);
       }
     }
   }
-    for (var i = 0; i < mazosDB.length; i++) {
-    cartasMazos.push(mazosDB[i].infoCartas);
+    for (var i = 0; i < decksDB.length; i++) {
+    cartasdecks.push(decksDB[i].infoCartas);
   }
 }
 
@@ -117,7 +117,7 @@ MongoClient.connect(uri, function(err, db) {
     var dbo = db.db("LeagueOfRuneterra");
     dbo.collection("Decks").find({}).toArray(function(err, result) {
       if (err) throw err;
-        mazosDB = result;
+        decksDB = result;
         db.close();
     });
 });

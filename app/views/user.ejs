@@ -8,15 +8,15 @@
     <h1>Decks y Cartas del usuario: <%= usuario.nameUser %></h1>
      <h2>Decks</h2>
     <ul>
-      <% for( var i=0; i < listaMazos.length; i++) { %>
+      <% for( var i=0; i < listadecks.length; i++) { %>
         <h3>deck <%= i+1 %>:</h3>
         <li>
-          <%='  ID DECK:  '+ listaMazos[i].deckID + '   DECK NAME:    ' + listaMazos[i].deckName + '   DECK VALUE:   ' + listaMazos[i].deckValue%>
+          <%='  ID DECK:  '+ listadecks[i].deckID + '   DECK NAME:    ' + listadecks[i].deckName + '   DECK VALUE:   ' + listadecks[i].deckValue%>
         </li>
-        <% for( var x=0; x < cartasDelMazos.length; x++) { %>
+        <% for( var x=0; x < cartasDeldecks.length; x++) { %>
 
-          <% if (cartasDelMazos[x].length == listaMazos[i].infoCartas.length) { %>
-            <%var cartas = cartasDelMazos[x]%>
+          <% if (cartasDeldecks[x].length == listadecks[i].infoCartas.length) { %>
+            <%var cartas = cartasDeldecks[x]%>
             <h4>Cartas del mazo:</h4>
             <% cartas.forEach(function(carta) { %>
               <li><%= carta %></li>
